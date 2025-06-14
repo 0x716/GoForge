@@ -41,7 +41,7 @@ This will generate:
 ```bash
 my-backend/
 ├── Makefile
-├── assets/logo
+├── assets
 ├── bootstrap
 ├── cmd/main.go
 ├── config.yaml
@@ -59,7 +59,7 @@ my-backend/
 │   └── utils/
 ├── query/
 ├── schema/
-└── test/image/
+└── test/
 ```
 
 ## 🔩 Technologies Used
