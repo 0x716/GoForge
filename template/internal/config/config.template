@@ -1,0 +1,26 @@
+package config
+
+type AppConfig struct {
+    App struct {
+        Host string
+        Port string
+        Name string
+    }
+
+    Constants sturct {}
+
+    URL struct {
+        Root string
+    }
+
+    Database struct {
+        Title string
+        Host string
+        Port string
+        User string
+        Password string
+        Engine string
+        Name string
+        Sslmode string
+    }
+}

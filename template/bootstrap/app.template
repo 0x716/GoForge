@@ -1,0 +1,50 @@
+package bootstrap
+
+import (
+	"fmt"
+	"log"
+
+	"github.com/gin-gonic/gin"
+	"github.com/{author}/{application_name}/internal/config"
+	"github.com/{author}/{application_name}/internal/infra"
+	"github.com/{author}/{application_name}/internal/router"
+)
+
+var (
+	engine *gin.Engine
+)
+
+func init() {
+	err := config.InitConfig()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = infra.InitDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	engine = router.InitRouter()
+	infra.RegisterCleanup()
+}
+
+type Application interface {
+	Run() error
+}
+
+type ApplicationImpl struct {
+	Engine *gin.Engine
+}
+
+func NewApplication() Application {
+	return &ApplicationImpl{Engine: engine}
+}
+
+func (a *ApplicationImpl) Run() error {
+	if err := a.Engine.Run(fmt.Sprintf("%s:%s", config.GlobalConfig.App.Host, config.GlobalConfig.App.Port)); err != nil {
+		return err
+	}
+
+	return nil
+}

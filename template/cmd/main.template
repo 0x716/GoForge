@@ -1,0 +1,15 @@
+package main
+
+import (
+	"log"
+
+	"github.com/{author}/{application_name}/bootstrap"
+)
+
+func main() {
+	app := bootstrap.NewApplication()
+
+	if err := app.Run(); err != nil {
+		log.Fatal(err)
+	}
+}
